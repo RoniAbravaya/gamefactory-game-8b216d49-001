@@ -6,7 +6,7 @@
       "is_free": true,
       "unlock_requirement": "none",
       "difficulty": 0.2,
-      "time_limit_seconds": 60,
+      "time_limit_seconds": null,
       "target_score": 100,
       "obstacles": {
         "type": "small_rocks",
@@ -24,226 +24,232 @@
     },
     {
       "level_number": 2,
-      "name": "Bouncy Platforms",
+      "name": "Winding Path",
       "is_free": true,
       "unlock_requirement": "none",
       "difficulty": 0.3,
-      "time_limit_seconds": 45,
+      "time_limit_seconds": 60,
       "target_score": 150,
       "obstacles": {
-        "type": "moving_platforms",
-        "count": 3,
+        "type": "small_rocks",
+        "count": 8,
         "speed": 2
       },
       "collectibles": {
-        "type": "gems",
-        "count": 8,
-        "value": 20
+        "type": "coins",
+        "count": 15,
+        "value": 10
       },
-      "special_features": [
-        "bouncy_platforms"
-      ],
-      "background_theme": "floating_islands",
+      "special_features": [],
+      "background_theme": "grassy_hills",
       "music_track": "level_2"
     },
     {
       "level_number": 3,
-      "name": "Spiky Cavern",
+      "name": "Treacherous Cliffs",
       "is_free": true,
       "unlock_requirement": "none",
       "difficulty": 0.4,
-      "time_limit_seconds": 60,
+      "time_limit_seconds": 90,
       "target_score": 200,
       "obstacles": {
-        "type": "spikes",
+        "type": "small_rocks",
         "count": 10,
-        "speed": 1
+        "speed": 3
       },
       "collectibles": {
-        "type": "diamonds",
-        "count": 5,
-        "value": 50
+        "type": "coins",
+        "count": 20,
+        "value": 10
       },
       "special_features": [
-        "narrow_platforms"
+        "platforms_with_gaps"
       ],
-      "background_theme": "dark_cavern",
+      "background_theme": "rocky_cliffs",
       "music_track": "level_3"
     },
     {
       "level_number": 4,
-      "name": "Rotating Platforms",
+      "name": "Shifting Platforms",
       "is_free": false,
       "unlock_requirement": "rewarded_ad",
       "difficulty": 0.5,
-      "time_limit_seconds": 90,
+      "time_limit_seconds": 120,
       "target_score": 300,
       "obstacles": {
-        "type": "rotating_platforms",
-        "count": 4,
-        "speed": 3
-      },
-      "collectibles": {
-        "type": "power_ups",
-        "count": 3,
-        "value": 100
-      },
-      "special_features": [
-        "rotating_platforms"
-      ],
-      "background_theme": "industrial_factory",
-      "music_track": "level_4"
-    },
-    {
-      "level_number": 5,
-      "name": "Treacherous Traps",
-      "is_free": false,
-      "unlock_requirement": "rewarded_ad",
-      "difficulty": 0.6,
-      "time_limit_seconds": 120,
-      "target_score": 450,
-      "obstacles": {
-        "type": "spikes",
-        "count": 15,
-        "speed": 2
-      },
-      "collectibles": {
-        "type": "keys",
-        "count": 2,
-        "value": 150
-      },
-      "special_features": [
-        "moving_platforms",
-        "spike_traps"
-      ],
-      "background_theme": "ancient_ruins",
-      "music_track": "level_5"
-    },
-    {
-      "level_number": 6,
-      "name": "Skyward Ascent",
-      "is_free": false,
-      "unlock_requirement": "rewarded_ad",
-      "difficulty": 0.7,
-      "time_limit_seconds": 180,
-      "target_score": 600,
-      "obstacles": {
-        "type": "moving_platforms",
-        "count": 6,
-        "speed": 4
-      },
-      "collectibles": {
-        "type": "power_ups",
-        "count": 4,
-        "value": 200
-      },
-      "special_features": [
-        "vertical_level",
-        "moving_platforms"
-      ],
-      "background_theme": "floating_islands",
-      "music_track": "level_6"
-    },
-    {
-      "level_number": 7,
-      "name": "Neon Gauntlet",
-      "is_free": false,
-      "unlock_requirement": "rewarded_ad",
-      "difficulty": 0.8,
-      "time_limit_seconds": 120,
-      "target_score": 800,
-      "obstacles": {
-        "type": "moving_spikes",
-        "count": 10,
-        "speed": 3
-      },
-      "collectibles": {
-        "type": "gems",
-        "count": 8,
-        "value": 100
-      },
-      "special_features": [
-        "moving_obstacles",
-        "narrow_platforms"
-      ],
-      "background_theme": "neon_city",
-      "music_track": "level_7"
-    },
-    {
-      "level_number": 8,
-      "name": "Crumbling Ruins",
-      "is_free": false,
-      "unlock_requirement": "rewarded_ad",
-      "difficulty": 0.8,
-      "time_limit_seconds": 150,
-      "target_score": 900,
-      "obstacles": {
-        "type": "collapsing_platforms",
-        "count": 8,
-        "speed": 2
-      },
-      "collectibles": {
-        "type": "power_ups",
-        "count": 3,
-        "value": 300
-      },
-      "special_features": [
-        "collapsing_platforms",
-        "multiple_paths"
-      ],
-      "background_theme": "ancient_ruins",
-      "music_track": "level_8"
-    },
-    {
-      "level_number": 9,
-      "name": "Cyberpunk Chaos",
-      "is_free": false,
-      "unlock_requirement": "rewarded_ad",
-      "difficulty": 0.9,
-      "time_limit_seconds": 180,
-      "target_score": 1200,
-      "obstacles": {
-        "type": "moving_spikes",
+        "type": "small_rocks",
         "count": 12,
         "speed": 4
       },
       "collectibles": {
-        "type": "keys",
-        "count": 2,
-        "value": 400
+        "type": "coins",
+        "count": 25,
+        "value": 10
       },
       "special_features": [
-        "moving_obstacles",
-        "narrow_platforms",
+        "moving_platforms"
+      ],
+      "background_theme": "rocky_cliffs",
+      "music_track": "level_4"
+    },
+    {
+      "level_number": 5,
+      "name": "Perilous Peaks",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.6,
+      "time_limit_seconds": 150,
+      "target_score": 400,
+      "obstacles": {
+        "type": "small_rocks",
+        "count": 15,
+        "speed": 5
+      },
+      "collectibles": {
+        "type": "coins",
+        "count": 30,
+        "value": 10
+      },
+      "special_features": [
+        "platforms_with_gaps",
+        "moving_platforms"
+      ],
+      "background_theme": "rocky_cliffs",
+      "music_track": "level_5"
+    },
+    {
+      "level_number": 6,
+      "name": "Spinning Spikes",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.7,
+      "time_limit_seconds": 180,
+      "target_score": 500,
+      "obstacles": {
+        "type": "spinning_spikes",
+        "count": 8,
+        "speed": 6
+      },
+      "collectibles": {
+        "type": "coins",
+        "count": 35,
+        "value": 10
+      },
+      "special_features": [
+        "moving_platforms",
+        "rotating_platforms"
+      ],
+      "background_theme": "industrial",
+      "music_track": "level_6"
+    },
+    {
+      "level_number": 7,
+      "name": "Treacherous Traps",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.8,
+      "time_limit_seconds": 210,
+      "target_score": 600,
+      "obstacles": {
+        "type": "spinning_spikes",
+        "count": 10,
+        "speed": 7
+      },
+      "collectibles": {
+        "type": "coins",
+        "count": 40,
+        "value": 10
+      },
+      "special_features": [
+        "moving_platforms",
+        "rotating_platforms",
+        "deadly_traps"
+      ],
+      "background_theme": "industrial",
+      "music_track": "level_7"
+    },
+    {
+      "level_number": 8,
+      "name": "Gauntlet of Doom",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.85,
+      "time_limit_seconds": 240,
+      "target_score": 700,
+      "obstacles": {
+        "type": "spinning_spikes",
+        "count": 12,
+        "speed": 8
+      },
+      "collectibles": {
+        "type": "coins",
+        "count": 45,
+        "value": 10
+      },
+      "special_features": [
+        "moving_platforms",
+        "rotating_platforms",
+        "deadly_traps",
         "multiple_paths"
       ],
-      "background_theme": "neon_city",
+      "background_theme": "industrial",
+      "music_track": "level_8"
+    },
+    {
+      "level_number": 9,
+      "name": "Maze of Madness",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.9,
+      "time_limit_seconds": 270,
+      "target_score": 800,
+      "obstacles": {
+        "type": "spinning_spikes",
+        "count": 15,
+        "speed": 9
+      },
+      "collectibles": {
+        "type": "coins",
+        "count": 50,
+        "value": 10
+      },
+      "special_features": [
+        "moving_platforms",
+        "rotating_platforms",
+        "deadly_traps",
+        "multiple_paths",
+        "maze_layout"
+      ],
+      "background_theme": "industrial",
       "music_track": "level_9"
     },
     {
       "level_number": 10,
-      "name": "Inferno Gauntlet",
+      "name": "Ascent to Victory",
       "is_free": false,
       "unlock_requirement": "rewarded_ad",
-      "difficulty": 0.9,
-      "time_limit_seconds": 240,
-      "target_score": 1500,
+      "difficulty": 0.95,
+      "time_limit_seconds": 300,
+      "target_score": 1000,
       "obstacles": {
-        "type": "rotating_spikes",
-        "count": 8,
-        "speed": 5
+        "type": "spinning_spikes",
+        "count": 20,
+        "speed": 10
       },
       "collectibles": {
-        "type": "power_ups",
-        "count": 4,
-        "value": 500
+        "type": "coins",
+        "count": 60,
+        "value": 10
       },
       "special_features": [
-        "rotating_obstacles",
-        "narrow_platforms",
-        "multiple_paths"
+        "moving_platforms",
+        "rotating_platforms",
+        "deadly_traps",
+        "multiple_paths",
+        "maze_layout",
+        "vertical_ascent"
       ],
-      "background_theme": "volcanic_island",
+      "background_theme": "industrial",
       "music_track": "level_10"
     }
   ]
