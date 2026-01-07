@@ -1,0 +1,250 @@
+{
+  "levels": [
+    {
+      "level_number": 1,
+      "name": "Grassy Hills",
+      "is_free": true,
+      "unlock_requirement": "none",
+      "difficulty": 0.2,
+      "time_limit_seconds": 60,
+      "target_score": 100,
+      "obstacles": {
+        "type": "small_rocks",
+        "count": 5,
+        "speed": 1
+      },
+      "collectibles": {
+        "type": "coins",
+        "count": 10,
+        "value": 10
+      },
+      "special_features": [],
+      "background_theme": "grassy_hills",
+      "music_track": "level_1"
+    },
+    {
+      "level_number": 2,
+      "name": "Bouncy Platforms",
+      "is_free": true,
+      "unlock_requirement": "none",
+      "difficulty": 0.3,
+      "time_limit_seconds": 45,
+      "target_score": 150,
+      "obstacles": {
+        "type": "moving_platforms",
+        "count": 3,
+        "speed": 2
+      },
+      "collectibles": {
+        "type": "gems",
+        "count": 8,
+        "value": 20
+      },
+      "special_features": [
+        "bouncy_platforms"
+      ],
+      "background_theme": "floating_islands",
+      "music_track": "level_2"
+    },
+    {
+      "level_number": 3,
+      "name": "Spiky Cavern",
+      "is_free": true,
+      "unlock_requirement": "none",
+      "difficulty": 0.4,
+      "time_limit_seconds": 60,
+      "target_score": 200,
+      "obstacles": {
+        "type": "spikes",
+        "count": 10,
+        "speed": 1
+      },
+      "collectibles": {
+        "type": "diamonds",
+        "count": 5,
+        "value": 50
+      },
+      "special_features": [
+        "narrow_platforms"
+      ],
+      "background_theme": "dark_cavern",
+      "music_track": "level_3"
+    },
+    {
+      "level_number": 4,
+      "name": "Rotating Platforms",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.5,
+      "time_limit_seconds": 90,
+      "target_score": 300,
+      "obstacles": {
+        "type": "rotating_platforms",
+        "count": 4,
+        "speed": 3
+      },
+      "collectibles": {
+        "type": "power_ups",
+        "count": 3,
+        "value": 100
+      },
+      "special_features": [
+        "rotating_platforms"
+      ],
+      "background_theme": "industrial_factory",
+      "music_track": "level_4"
+    },
+    {
+      "level_number": 5,
+      "name": "Treacherous Traps",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.6,
+      "time_limit_seconds": 120,
+      "target_score": 450,
+      "obstacles": {
+        "type": "spikes",
+        "count": 15,
+        "speed": 2
+      },
+      "collectibles": {
+        "type": "keys",
+        "count": 2,
+        "value": 150
+      },
+      "special_features": [
+        "moving_platforms",
+        "spike_traps"
+      ],
+      "background_theme": "ancient_ruins",
+      "music_track": "level_5"
+    },
+    {
+      "level_number": 6,
+      "name": "Skyward Ascent",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.7,
+      "time_limit_seconds": 180,
+      "target_score": 600,
+      "obstacles": {
+        "type": "moving_platforms",
+        "count": 6,
+        "speed": 4
+      },
+      "collectibles": {
+        "type": "power_ups",
+        "count": 4,
+        "value": 200
+      },
+      "special_features": [
+        "vertical_level",
+        "moving_platforms"
+      ],
+      "background_theme": "floating_islands",
+      "music_track": "level_6"
+    },
+    {
+      "level_number": 7,
+      "name": "Neon Gauntlet",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.8,
+      "time_limit_seconds": 120,
+      "target_score": 800,
+      "obstacles": {
+        "type": "moving_spikes",
+        "count": 10,
+        "speed": 3
+      },
+      "collectibles": {
+        "type": "gems",
+        "count": 8,
+        "value": 100
+      },
+      "special_features": [
+        "moving_obstacles",
+        "narrow_platforms"
+      ],
+      "background_theme": "neon_city",
+      "music_track": "level_7"
+    },
+    {
+      "level_number": 8,
+      "name": "Crumbling Ruins",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.8,
+      "time_limit_seconds": 150,
+      "target_score": 900,
+      "obstacles": {
+        "type": "collapsing_platforms",
+        "count": 8,
+        "speed": 2
+      },
+      "collectibles": {
+        "type": "power_ups",
+        "count": 3,
+        "value": 300
+      },
+      "special_features": [
+        "collapsing_platforms",
+        "multiple_paths"
+      ],
+      "background_theme": "ancient_ruins",
+      "music_track": "level_8"
+    },
+    {
+      "level_number": 9,
+      "name": "Cyberpunk Chaos",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.9,
+      "time_limit_seconds": 180,
+      "target_score": 1200,
+      "obstacles": {
+        "type": "moving_spikes",
+        "count": 12,
+        "speed": 4
+      },
+      "collectibles": {
+        "type": "keys",
+        "count": 2,
+        "value": 400
+      },
+      "special_features": [
+        "moving_obstacles",
+        "narrow_platforms",
+        "multiple_paths"
+      ],
+      "background_theme": "neon_city",
+      "music_track": "level_9"
+    },
+    {
+      "level_number": 10,
+      "name": "Inferno Gauntlet",
+      "is_free": false,
+      "unlock_requirement": "rewarded_ad",
+      "difficulty": 0.9,
+      "time_limit_seconds": 240,
+      "target_score": 1500,
+      "obstacles": {
+        "type": "rotating_spikes",
+        "count": 8,
+        "speed": 5
+      },
+      "collectibles": {
+        "type": "power_ups",
+        "count": 4,
+        "value": 500
+      },
+      "special_features": [
+        "rotating_obstacles",
+        "narrow_platforms",
+        "multiple_paths"
+      ],
+      "background_theme": "volcanic_island",
+      "music_track": "level_10"
+    }
+  ]
+}
