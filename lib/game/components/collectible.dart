@@ -1,80 +1,50 @@
 import 'package:flame/components.dart';
-import 'package:flame/audio.dart';
-import 'package:test6_platformer_01/game_state.dart';
+import 'package:flame/collisions.dart';
+import 'package:flutter/material.dart';
 
-/// A collectible item that the player can pick up for points.
-class Collectible extends SpriteComponent with HasGameRef<GameState> {
-  /// The score value of this collectible.
-  final int scoreValue;
-
-  /// The audio clip to play when this collectible is collected.
-  final AudioClip _collectSound;
-
-  /// Whether this collectible should have an animation.
-  final bool _hasAnimation;
-
-  /// The animation component for this collectible, if applicable.
-  late final AnimationComponent _animation;
+class Collectible extends PositionComponent with CollisionCallbacks {
+  final int value;
+  double _floatOffset = 0;
 
   Collectible({
-    required Sprite sprite,
-    required this.scoreValue,
-    required AudioClip collectSound,
-    bool hasAnimation = false,
-  })  : _collectSound = collectSound,
-        _hasAnimation = hasAnimation,
-        super(
-          sprite: sprite,
-          size: Vector2.all(32),
+    required Vector2 position,
+    this.value = 10,
+  }) : super(
+          position: position,
+          size: Vector2(30, 30),
+          anchor: Anchor.center,
         );
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-
-    // Add collision detection
-    addCollision();
-
-    // Add animation if enabled
-    if (_hasAnimation) {
-      _animation = AnimationComponent(
-        animation: Animation.sequenced(
-          'collectible',
-          4,
-          textureSize: size,
-          stepTime: 0.2,
-        ),
-        position: position,
-        size: size,
-      );
-      add(_animation);
-    }
-  }
-
-  @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollision(intersectionPoints, other);
-
-    // Check if the player has collided with this collectible
-    if (other is Player) {
-      // Increase the player's score
-      gameRef.gameState.score += scoreValue;
-
-      // Play the collect sound
-      _collectSound.play();
-
-      // Remove the collectible from the game
-      removeFromParent();
-    }
+    add(CircleHitbox());
   }
 
   @override
   void update(double dt) {
     super.update(dt);
-
-    // Update the animation if it exists
-    if (_hasAnimation) {
-      _animation.update(dt);
+    
+    position.y += 80 * dt;
+    
+    _floatOffset += dt * 5;
+    position.x += (0.5 * ((_floatOffset % 2) < 1 ? 1 : -1));
+    
+    if (position.y > 900) {
+      removeFromParent();
     }
+  }
+
+  @override
+  void render(Canvas canvas) {
+    canvas.drawCircle(
+      Offset(size.x / 2, size.y / 2),
+      size.x / 2,
+      Paint()..color = Colors.amber,
+    );
+  }
+
+  void collect() {
+    removeFromParent();
   }
 }

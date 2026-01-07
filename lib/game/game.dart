@@ -1,134 +1,99 @@
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
-import 'package:test6_platformer_01/components/player.dart';
-import 'package:test6_platformer_01/components/obstacle.dart';
-import 'package:test6_platformer_01/components/collectible.dart';
-import 'package:test6_platformer_01/services/analytics.dart';
-import 'package:test6_platformer_01/services/ads.dart';
-import 'package:test6_platformer_01/services/storage.dart';
+
+enum GameState { playing, paused, gameOver, levelComplete }
 
 class Test6Platformer01Game extends FlameGame with TapDetector {
-  /// The current game state
-  GameState _gameState = GameState.playing;
-
-  /// The current level being played
-  int _currentLevel = 1;
-
-  /// The player's score
-  int _score = 0;
-
-  /// The player component
-  late Player _player;
-
-  /// The list of obstacles in the current level
-  late List<Obstacle> _obstacles;
-
-  /// The list of collectibles in the current level
-  late List<Collectible> _collectibles;
-
-  /// The analytics service
-  final AnalyticsService _analyticsService = AnalyticsService();
-
-  /// The ads service
-  final AdsService _adsService = AdsService();
-
-  /// The storage service
-  final StorageService _storageService = StorageService();
-
-  /// Loads the current level
-  void _loadLevel() {
-    // Load the level data from storage or other source
-    // Create the player, obstacles, and collectibles
-    _player = Player();
-    _obstacles = [
-      Obstacle(position: Vector2(100, 300)),
-      Obstacle(position: Vector2(300, 200)),
-    ];
-    _collectibles = [
-      Collectible(position: Vector2(200, 400)),
-    ];
-
-    // Add the components to the game
-    add(_player);
-    _obstacles.forEach(add);
-    _collectibles.forEach(add);
-  }
+  late GameState gameState;
+  int score = 0;
+  int lives = 3;
 
   @override
   Future<void> onLoad() async {
-    // Load the first level
-    _loadLevel();
-
-    // Register the tap detector
-    onTapUp = _handleTap;
+    super.onLoad();
+    gameState = GameState.playing;
+    camera.viewport = FixedResolutionViewport(Vector2(320, 480));
+    // Load initial level
+    loadLevel(1);
   }
 
-  void _handleTap(TapUpInfo info) {
-    // Handle the tap input, e.g., make the player jump
-    if (_gameState == GameState.playing) {
-      _player.jump();
-    }
+  void loadLevel(int levelNumber) {
+    // Placeholder for level loading logic
+    // This should handle loading level configurations, setting up the level, and resetting necessary game state variables
+    print('Loading level $levelNumber...');
+    score = 0; // Reset score for the level
+    gameState = GameState.playing;
   }
 
   @override
-  void update(double dt) {
-    super.update(dt);
-
-    // Update the game state based on player actions and level progress
-    switch (_gameState) {
-      case GameState.playing:
-        // Update player, obstacles, and collectibles
-        _player.update(dt);
-        _obstacles.forEach((obstacle) => obstacle.update(dt));
-        _collectibles.forEach((collectible) => collectible.update(dt));
-
-        // Check for collisions and level completion
-        if (_player.isColliding(_obstacles)) {
-          _gameOver();
-        } else if (_player.isColliding(_collectibles)) {
-          _collectItem();
-        } else if (_player.reachedEndOfLevel()) {
-          _levelComplete();
-        }
-        break;
-      case GameState.paused:
-        // Pause the game
-        break;
-      case GameState.gameOver:
-        // Handle game over state
-        break;
-      case GameState.levelComplete:
-        // Handle level complete state
-        break;
+  void onTap() {
+    // Placeholder for player tap actions, typically jumping in a platformer
+    if (gameState == GameState.playing) {
+      print('Player tapped to jump');
+      // Implement jumping logic here
     }
   }
 
-  void _gameOver() {
-    // Handle game over logic
-    _gameState = GameState.gameOver;
-    _analyticsService.logGameOver();
-    // Show game over UI, reset level, etc.
+  void updateScore(int points) {
+    if (gameState == GameState.playing) {
+      score += points;
+      print('Score updated: $score');
+      // Update UI overlay with new score
+    }
   }
 
-  void _collectItem() {
-    // Handle item collection logic
-    _score += 100;
-    _analyticsService.logItemCollected();
-    // Remove the collected item from the game
+  void loseLife() {
+    if (gameState == GameState.playing) {
+      lives -= 1;
+      print('Lost a life. Lives remaining: $lives');
+      if (lives <= 0) {
+        gameState = GameState.gameOver;
+        // Handle game over state (e.g., show game over overlay)
+      }
+    }
   }
 
-  void _levelComplete() {
-    // Handle level complete logic
-    _gameState = GameState.levelComplete;
-    _analyticsService.logLevelComplete(_currentLevel);
-    // Show level complete UI, save progress, load next level, etc.
+  void completeLevel() {
+    gameState = GameState.levelComplete;
+    print('Level complete!');
+    // Handle level completion (e.g., show level complete overlay, load next level)
   }
-}
 
-/// The possible game states
-enum GameState {
-  playing,
-  paused,
-  gameOver,
-  levelComplete,
+  void pauseGame() {
+    gameState = GameState.paused;
+    // Show pause overlay
+  }
+
+  void resumeGame() {
+    if (gameState == GameState.paused) {
+      gameState = GameState.playing;
+      // Hide pause overlay
+    }
+  }
+
+  void handleCollision() {
+    // Placeholder for collision handling logic
+    // This should include checking for collisions with obstacles, enemies, or level boundaries
+    print('Collision detected');
+    loseLife();
+  }
+
+  // Example of how to integrate with a GameController
+  void connectToGameController() {
+    // Placeholder for game controller integration
+    print('Game controller connected');
+  }
+
+  // Example of how to manage overlays for UI
+  void manageOverlays() {
+    // Placeholder for managing overlays like pause menu, score display, etc.
+    print('Managing overlays');
+  }
+
+  // Placeholder for analytics event logging
+  void logEvent(String eventName) {
+    print('Logging event: $eventName');
+    // Implement analytics event logging here
+  }
 }

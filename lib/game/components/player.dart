@@ -1,129 +1,72 @@
 import 'package:flame/components.dart';
-import 'package:flame/input.dart';
+import 'package:flame/geometry.dart';
 import 'package:flame/sprite.dart';
 
-/// The player character in the platformer game.
-class Player extends SpriteAnimationComponent with HasGameRef, Collidable {
-  /// The player's current horizontal velocity.
-  double velocityX = 0;
-
-  /// The player's current vertical velocity.
-  double velocityY = 0;
-
-  /// The player's maximum horizontal speed.
-  double maxHorizontalSpeed = 200;
-
-  /// The player's jump force.
-  double jumpForce = -500;
-
-  /// The player's current health.
+/// Represents the player character in the platformer game.
+class Player extends SpriteAnimationComponent with HasGameRef, Hitbox, Collidable {
+  double speed = 200.0;
+  double jumpStrength = 300.0;
+  bool isJumping = false;
+  Vector2 gravity = Vector2(0, 500);
+  Vector2 velocity = Vector2.zero();
   int health = 3;
+  bool isInvulnerable = false;
+  Duration invulnerabilityDuration = Duration(seconds: 2);
 
-  /// The player's current score.
-  int score = 0;
-
-  /// The player's sprite animation for the idle state.
-  late SpriteAnimation idleAnimation;
-
-  /// The player's sprite animation for the moving state.
-  late SpriteAnimation movingAnimation;
-
-  /// The player's sprite animation for the jumping state.
-  late SpriteAnimation jumpingAnimation;
-
-  /// Initializes the player component.
-  Player({
-    required Vector2 position,
-    required Vector2 size,
-  }) : super(
-          position: position,
-          size: size,
-        ) {
-    // Load and create the player's sprite animations
-    idleAnimation = SpriteAnimation.load(
-      'player_idle.png',
-      SpriteAnimationData.sequenced(
-        amount: 4,
-        stepTime: 0.2,
-        textureSize: Vector2.all(32),
-      ),
-    );
-
-    movingAnimation = SpriteAnimation.load(
-      'player_moving.png',
-      SpriteAnimationData.sequenced(
-        amount: 6,
-        stepTime: 0.1,
-        textureSize: Vector2.all(32),
-      ),
-    );
-
-    jumpingAnimation = SpriteAnimation.load(
-      'player_jumping.png',
-      SpriteAnimationData.sequenced(
-        amount: 2,
-        stepTime: 0.5,
-        textureSize: Vector2.all(32),
-      ),
-    );
-  }
-
-  @override
-  Future<void> onLoad() async {
-    await super.onLoad();
-
-    // Set the initial animation to the idle state
-    animation = idleAnimation;
+  Player({SpriteAnimation? animation, Vector2? position, Vector2? size})
+      : super(animation: animation, position: position, size: size) {
+    addHitbox(HitboxRectangle());
   }
 
   @override
   void update(double dt) {
     super.update(dt);
+    velocity += gravity * dt;
+    position += velocity * dt;
 
-    // Update the player's position based on the current velocities
-    position.x += velocityX * dt;
-    position.y += velocityY * dt;
-
-    // Apply gravity
-    velocityY += 1500 * dt;
-
-    // Update the player's animation based on the current state
-    if (velocityX.abs() > 0.1) {
-      animation = movingAnimation;
-    } else {
-      animation = idleAnimation;
+    // Check for landing
+    if (isJumping && position.y >= gameRef.size.y - size.y) {
+      isJumping = false;
+      position.y = gameRef.size.y - size.y;
+      velocity.y = 0;
     }
 
-    if (velocityY < 0) {
-      animation = jumpingAnimation;
+    // Screen boundaries
+    position.clamp(Vector2.zero(), gameRef.size - size);
+  }
+
+  /// Makes the player jump if they are not already jumping.
+  void jump() {
+    if (!isJumping) {
+      velocity.y = -jumpStrength;
+      isJumping = true;
     }
   }
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
     super.onCollision(intersectionPoints, other);
-
-    // Handle collisions with other game objects
-    if (other is Obstacle) {
-      // Reduce the player's health or handle the collision in another way
-      health--;
+    if (other is Obstacle && !isInvulnerable) {
+      takeDamage();
     }
   }
 
-  /// Handles the player's jump input.
-  void jump() {
-    // Apply the jump force to the player's vertical velocity
-    velocityY = jumpForce;
+  /// Reduces the player's health and triggers invulnerability.
+  void takeDamage() {
+    if (!isInvulnerable) {
+      health -= 1;
+      isInvulnerable = true;
+      Future.delayed(invulnerabilityDuration, () {
+        isInvulnerable = false;
+      });
+    }
   }
+}
 
-  /// Handles the player's horizontal movement input.
-  void move(double direction) {
-    // Update the player's horizontal velocity based on the input direction
-    velocityX = direction * maxHorizontalSpeed;
-  }
-
-  /// Increases the player's score by the given amount.
-  void addScore(int amount) {
-    score += amount;
+/// Represents obstacles that the player can collide with.
+class Obstacle extends SpriteComponent with Hitbox, Collidable {
+  Obstacle({Sprite? sprite, Vector2? position, Vector2? size})
+      : super(sprite: sprite, position: position, size: size) {
+    addHitbox(HitboxRectangle());
   }
 }
